@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import editTranscriptService from "../services/edit.ts";
+import editTranscriptService from "../services/edit";
 
 const editTranscriptController = async (req: Request, res: Response) => {
   if (typeof req.body.text === "string") {

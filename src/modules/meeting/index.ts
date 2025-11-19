@@ -1,7 +1,7 @@
 import { RequestHandler, Router } from "express";
-import uploadMeetingController from "./controllers/upload.ts";
-import upload from "../../helpers/multerMiddleware.ts";
-import authMiddleware from "../../helpers/authMiddleware.ts";
+import uploadMeetingController from "./controllers/upload";
+import upload from "../../helpers/multerMiddleware";
+import authMiddleware from "../../helpers/authMiddleware";
 
 const router = Router();
 router.post(

@@ -1,4 +1,4 @@
-import meetingModel from "../../../../mongodb/meetingModel.ts";
+import meetingModel from "../../../../mongodb/meetingModel";
 
 const createTranscriptDB = async (data: any) => {
   console.log(data);

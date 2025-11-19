@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import signupService from "../services/signup.ts";
+import signupService from "../services/signup";
 const signupController = async (req: Request, res: Response): Promise<void> => {
   try {
     req.body.email = req.body.email.trim();

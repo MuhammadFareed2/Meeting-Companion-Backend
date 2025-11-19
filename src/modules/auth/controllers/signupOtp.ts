@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import signupOtpService from "../services/signupOtp.ts";
+import signupOtpService from "../services/signupOtp";
 const signupOtpController = async (
   req: Request,
   res: Response

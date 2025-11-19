@@ -1,7 +1,7 @@
 import { RequestHandler, Router } from "express";
-import createTranscriptController from "./controllers/create.ts";
-import authMiddleware from "../../helpers/authMiddleware.ts";
-import editTranscriptController from "./controllers/edit.ts";
+import createTranscriptController from "./controllers/create";
+import authMiddleware from "../../helpers/authMiddleware";
+import editTranscriptController from "./controllers/edit";
 
 const router = Router();
 router.post(

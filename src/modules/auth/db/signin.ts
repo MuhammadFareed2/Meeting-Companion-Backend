@@ -1,4 +1,4 @@
-import userModel from "../../../../mongodb/userModel.ts";
+import userModel from "../../../../mongodb/userModel";
 
 const signinDB = async (data: any) => {
   try {

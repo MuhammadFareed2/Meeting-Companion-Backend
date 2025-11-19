@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import signupDB from "../db/signup.ts";
+import signupDB from "../db/signup";
 import "dotenv/config";
 
 const signupService = async (data: any) => {

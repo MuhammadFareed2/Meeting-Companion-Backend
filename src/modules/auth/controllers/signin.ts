@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import signinService from "../services/signin.ts";
+import signinService from "../services/signin";
 
 const signinController = async (req: Request, res: Response): Promise<void> => {
   try {

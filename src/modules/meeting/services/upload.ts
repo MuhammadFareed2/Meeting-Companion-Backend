@@ -2,8 +2,8 @@ import Ffmpeg from "fluent-ffmpeg";
 import path from "path";
 import fs from "fs";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
-import cloudinary from "../../../config/cloudinary.ts";
-import uploadMeetingDB from "../db/upload.ts";
+import cloudinary from "../../../config/cloudinary";
+import uploadMeetingDB from "../db/upload";
 
 const uploadMeetingService = async (filePath: any, userId: any, body: any) => {
   Ffmpeg.setFfmpegPath(ffmpegInstaller.path);

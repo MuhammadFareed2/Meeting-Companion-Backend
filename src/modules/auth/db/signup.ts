@@ -1,5 +1,5 @@
-import otpModel from "../../../../mongodb/otpModel.ts";
-import userModel from "../../../../mongodb/userModel.ts";
+import otpModel from "../../../../mongodb/otpModel";
+import userModel from "../../../../mongodb/userModel";
 
 const signupDB = async (data: any) => {
   try {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import uploadMeetingService from "../services/upload.ts";
+import uploadMeetingService from "../services/upload";
 import fs from "fs";
 
 interface AuthenticatedRequest extends Request {

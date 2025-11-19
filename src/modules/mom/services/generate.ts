@@ -1,7 +1,7 @@
 import axios from "axios";
 import OpenAI from "openai";
 import "dotenv/config";
-import generateMomDB from "../db/generate.ts";
+import generateMomDB from "../db/generate";
 
 // Helper to format seconds to mm:ss
 function formatSeconds(seconds: number): string {

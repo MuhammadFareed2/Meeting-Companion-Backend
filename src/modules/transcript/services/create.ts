@@ -1,6 +1,6 @@
 import axios from "axios";
 import "dotenv/config";
-import createTranscriptDB from "../db/create.ts";
+import createTranscriptDB from "../db/create";
 
 const createTranscriptService = async (data: any) => {
   const transcriptRes = await axios.post(

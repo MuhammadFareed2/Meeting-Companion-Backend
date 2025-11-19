@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import generateMomService from "../services/generate.ts";
+import generateMomService from "../services/generate";
 
 const generateMomController = async (req: Request, res: Response) => {
   try {

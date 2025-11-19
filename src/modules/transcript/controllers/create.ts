@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import createTranscriptService from "../services/create.ts";
+import createTranscriptService from "../services/create";
 
 const createTranscriptController = async (req: Request, res: Response) => {
   console.log(req.body);

@@ -1,4 +1,4 @@
-import signinDB from "../db/signin.ts";
+import signinDB from "../db/signin";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import "dotenv/config";

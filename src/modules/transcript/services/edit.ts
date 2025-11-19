@@ -1,4 +1,4 @@
-import editTranscriptDB from "../db/edit.ts";
+import editTranscriptDB from "../db/edit";
 
 const editTranscriptService = async (data: any) => {
   const meeting = await editTranscriptDB(data);

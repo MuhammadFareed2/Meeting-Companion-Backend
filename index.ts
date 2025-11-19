@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import "dotenv/config";
 import cors from "cors";
 import mongoose from "mongoose";
-import routes from "./src/routes/index.ts";
+import routes from "./src/routes/index";
 
 const app = express();
 const PORT = process.env.PORT;
