@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -20,7 +29,7 @@ const openai = new openai_1.default({
     baseURL: "https://openrouter.ai/api/v1",
     apiKey: process.env.OPENROUTER_DEEPSEEK_API_KEY,
 });
-const generateMomService = async (data) => {
+const generateMomService = (data) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Input transcript:", data);
     try {
         // Format the transcript
@@ -51,7 +60,7 @@ Transcript:
 ${transcriptText}
 `;
         // Get completion from DeepSeek
-        const completion = await openai.chat.completions.create({
+        const completion = yield openai.chat.completions.create({
             messages: [
                 {
                     role: "system",
@@ -70,6 +79,7 @@ ${transcriptText}
             .split(/(?:\*\*Chunk \d+\*\*|Chunk \d+)/g)
             .filter((c) => c.trim());
         const chunks = chunkBlocks.map((block, index) => {
+            var _a, _b, _c, _d, _e;
             const titleMatch = block.match(/(?:-?\s*Title:)\s*(.+)/i);
             const timeMatch = block.match(/(?:-?\s*Time:)\s*(.+)/i);
             const summaryMatch = block.match(/(?:-?\s*Summary:)\s*([\s\S]*?)\n(?:-?\s*Tags:)/i);
@@ -77,19 +87,19 @@ ${transcriptText}
             const highlightsMatch = block.match(/(?:-?\s*Highlights:)\s*([\s\S]*)/i);
             return {
                 chunk: index + 1,
-                title: titleMatch?.[1]?.trim() || "",
-                timeRange: timeMatch?.[1]?.trim() || "",
-                summary: summaryMatch?.[1]?.trim() || "",
-                tags: tagsMatch?.[1]?.split(",").map((t) => t.trim()) || [],
-                highlights: highlightsMatch?.[1]?.trim() || "",
+                title: ((_a = titleMatch === null || titleMatch === void 0 ? void 0 : titleMatch[1]) === null || _a === void 0 ? void 0 : _a.trim()) || "",
+                timeRange: ((_b = timeMatch === null || timeMatch === void 0 ? void 0 : timeMatch[1]) === null || _b === void 0 ? void 0 : _b.trim()) || "",
+                summary: ((_c = summaryMatch === null || summaryMatch === void 0 ? void 0 : summaryMatch[1]) === null || _c === void 0 ? void 0 : _c.trim()) || "",
+                tags: ((_d = tagsMatch === null || tagsMatch === void 0 ? void 0 : tagsMatch[1]) === null || _d === void 0 ? void 0 : _d.split(",").map((t) => t.trim())) || [],
+                highlights: ((_e = highlightsMatch === null || highlightsMatch === void 0 ? void 0 : highlightsMatch[1]) === null || _e === void 0 ? void 0 : _e.trim()) || "",
             };
         });
-        const response = await (0, generate_1.default)(chunks, data._id);
+        const response = yield (0, generate_1.default)(chunks, data._id);
         return response;
     }
     catch (err) {
         console.error("Error in generateMomService:", err);
         throw err;
     }
-};
+});
 exports.default = generateMomService;
