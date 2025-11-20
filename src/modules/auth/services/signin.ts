@@ -3,41 +3,25 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
-interface SigninData {
-  email: string;
-  password: string;
-}
-
-const signinService = async (data: SigninData) => {
+const signinService = async (data: any) => {
   const user: any = await signinDB(data);
+  const isPasswordCorrect = bcrypt.compareSync(data.password, user?.password);
 
-  if (!user) {
-    // User not found
-    return { success: false, error: "User not found" };
+  if (isPasswordCorrect) {
+    if (!process.env.JWT_SECRET) {
+      throw new Error("❌ JWT_SECRET is not defined in environment variables.");
+    }
+    let token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET
+    );
+    return {
+      user,
+      token: token,
+      success: true,
+    };
+  } else {
+    return { success: false };
   }
-
-  const isPasswordCorrect = bcrypt.compareSync(data.password, user.password);
-
-  if (!isPasswordCorrect) {
-    return { success: false, error: "Invalid credentials" };
-  }
-
-  if (!process.env.JWT_SECRET) {
-    console.error("❌ JWT_SECRET is not defined in environment variables.");
-    return { success: false, error: "Server configuration error" };
-  }
-
-  const token = jwt.sign(
-    { userId: user._id, email: user.email },
-    process.env.JWT_SECRET,
-    { expiresIn: "7d" }
-  );
-
-  return {
-    success: true,
-    user: { email: user.email, _id: user._id },
-    token,
-  };
 };
-
 export default signinService;
