@@ -20,7 +20,7 @@ mongoose.connection.on("connected", () => {
 });
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello");
+  res.send("Meeting Companion Backend is running...");
 });
 
 app.use("/api", routes);
