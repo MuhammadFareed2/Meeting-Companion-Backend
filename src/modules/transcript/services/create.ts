@@ -24,7 +24,7 @@ const createTranscriptService = async (data: any) => {
   if (transcript.status === "completed") {
     const obj = {
       _id: data._id,
-      transcript,
+      transcript: transcript,
     };
     const meeting: any = await createTranscriptDB(obj);
 
@@ -51,12 +51,8 @@ const pollTranscript = async (id: any) => {
     );
 
     result = res.data;
+    console.log(result);
     status = result.status;
-
-    // ✅ Safe logging
-    if (process.env.NODE_ENV !== "production") {
-      console.log(`Polling transcript ${id}: status=${status}`);
-    }
   }
 
   return result;

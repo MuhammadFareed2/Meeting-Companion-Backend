@@ -10,17 +10,12 @@ const uploadMeetingService = async (filePath: any, userId: any, body: any) => {
   const outputDir = path.join(__dirname, "../../../outputs");
   const outputFilename = `${Date.now()}.mp3`;
   const outputPath = path.join(outputDir, outputFilename);
-
   return new Promise((resolve, reject) => {
     fs.mkdirSync(outputDir, { recursive: true });
 
     Ffmpeg(filePath)
       .toFormat("mp3")
-      .on("start", (cmd) => {
-        if (process.env.NODE_ENV !== "production") {
-          console.log("FFmpeg command:", cmd);
-        }
-      })
+      .on("start", (cmd) => console.log("FFmpeg command:", cmd))
       .on("end", async () => {
         try {
           const result = await cloudinary.uploader.upload(outputPath, {
@@ -29,13 +24,19 @@ const uploadMeetingService = async (filePath: any, userId: any, body: any) => {
             public_id: path.parse(outputFilename).name,
           });
           fs.unlinkSync(outputPath);
-          const dbResult = await uploadMeetingDB(result.secure_url, userId, body);
+          const dbResult = await uploadMeetingDB(
+            result.secure_url,
+            userId,
+            body
+          );
           resolve(dbResult);
         } catch (err: any) {
-          reject(new Error("Cloudinary upload failed: " + err.message));
+          throw new Error("Cloudinary upload failed: " + err.message);
         }
       })
-      .on("error", (err) => reject(new Error("FFmpeg conversion failed: " + err.message)))
+      .on("error", (err) =>
+        reject(new Error("FFmpeg conversion failed: " + err.message))
+      )
       .save(outputPath);
   });
 };
