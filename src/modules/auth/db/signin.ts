@@ -1,12 +1,8 @@
 import userModel from "../../../../mongodb/userModel";
 
-const signinDB = async (data: any) => {
-  try {
-    const user = await userModel.findOne({ email: data.email });
-    console.log(user);
-    return user;
-  } catch (err) {
-    throw err;
-  }
+const signinDB = async (data: { email: string }) => {
+  const email = data.email.trim().toLowerCase();
+  return await userModel.findOne({ email });
 };
+
 export default signinDB;
