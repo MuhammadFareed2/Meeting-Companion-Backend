@@ -5,7 +5,7 @@ import "dotenv/config";
 
 const signupOtpService = async (data: any) => {
   const otp = crypto.randomInt(100000, 999999).toString();
-  const otpExpiry = new Date(Date.now() + 5 * 60 * 100000);
+  const otpExpiry = new Date(Date.now() + 5 * 60 * 1000);
 
   const dataWithOtp = { ...data, otp, otpExpiry };
   const response: any = await signupOtpDB(dataWithOtp);
