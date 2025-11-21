@@ -1,5 +1,7 @@
 # Meeting Companion Backend 
 
+<img width="1364" height="235" alt="Screenshot 2025-11-21 014117" src="https://github.com/user-attachments/assets/29133f79-e127-4c8a-b6a4-a128d6f3c57f" />
+
 [Live Demo](https://meeting-companion.vercel.app/)
 [FRONTEND_REPO](https://github.com/MuhammadFareed2/Meeting-Companion-Frontend)
 [BACKEND REPO](https://github.com/MuhammadFareed2/Meeting-Companion-Backend)
